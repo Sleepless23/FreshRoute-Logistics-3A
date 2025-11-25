@@ -1,15 +1,17 @@
 from getpass import getpass
 
-def select_from_list(prompt_options, exit_message="Exiting...", return_option_index=False):
+def select_from_list(prompt_options, exit_message="Exiting...", exit_option="Exit", head_text=""):
     if not prompt_options:
         print("No options provided!")
         return None
 
     print(f"\n{'=' * 50}") 
+    if head_text:
+        print(head_text)
     print("Please choose an option:")
     for i, option in enumerate(prompt_options, start=1):
         print(f"{i}. {option}")
-    print(f"{len(prompt_options) + 1}. Exit")
+    print(f"{len(prompt_options) + 1}. {exit_option}")
     print(f"{'=' * 50}") 
 
     while True:
@@ -26,9 +28,6 @@ def select_from_list(prompt_options, exit_message="Exiting...", return_option_in
 
             value = int(user_input)
             if 1 <= value <= len(prompt_options):
-                if return_option_index:
-                    return value - 1
-                else:
                     return value
             else:
                 print(f"Invalid choice! Please enter a number between 1 and {len(prompt_options)}.")
@@ -39,12 +38,12 @@ def select_from_list(prompt_options, exit_message="Exiting...", return_option_in
             print("\nInput canceled by user.")
             return None
 
-def input_string(prompt, exit_message="Exiting...", required_input=[], allow_pass=False):
+def input_string(prompt, exit_message="Exiting...", required_input=[], allow_pass=False, allow_empty=False):
     while True:
         try:
             user_input = input(prompt).strip() if not allow_pass else getpass(prompt).strip()
             
-            if not user_input:
+            if not user_input and not allow_empty:
                 print("Input cannot be empty. Please try again.")
                 continue
 
@@ -60,4 +59,4 @@ def input_string(prompt, exit_message="Exiting...", required_input=[], allow_pas
         
         except (EOFError, KeyboardInterrupt):
             print("\nInput canceled by user.")
-            return None 
+            return None

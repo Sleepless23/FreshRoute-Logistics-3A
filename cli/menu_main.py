@@ -1,10 +1,10 @@
 from utils.helpers import select_from_list
-from auth.register_user import register_user
 from cli.menu_drivers import driver_menu
 from cli.menu_packages import package_menu
 from cli.menu_routes import route_menu
 from cli.menu_tracking import tracking_menu
 from cli.menu_reports import reports_menu
+from cli.menu_users import user_menu
 
 def menu_main(user_id, user_role, user_full_name, user_username):
     while True:
@@ -26,8 +26,8 @@ def menu_main(user_id, user_role, user_full_name, user_username):
             menu_options.append("Driver Dashboard")
             call_menu_functions.append(driver_menu)
         if user_role == "admin":
-            call_menu_functions.append(register_user)
-            menu_options.append("Register New User")
+            call_menu_functions.append(user_menu)
+            menu_options.append("User Management")
 
         choice_input = select_from_list(menu_options, "Logging out...", "Log out", "====== MAIN MENU ======")
                 
@@ -38,4 +38,3 @@ def menu_main(user_id, user_role, user_full_name, user_username):
             if menu_options.index(options) + 1 == choice_input:
                 print(f"You selected: {options}")
                 call_menu_functions[menu_options.index(options)]()
-            
