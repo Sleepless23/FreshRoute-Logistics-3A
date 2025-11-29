@@ -1,4 +1,4 @@
-# ROLE FOR: RENDEL GARCIA
+# ROLE FOR: John RENDEL GARCIA
 from services.package_service import (
     register_package,
     edit_package,

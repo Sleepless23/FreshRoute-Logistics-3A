@@ -1,4 +1,4 @@
-# ROLE FOR: RENDEL GARCIA
+# ROLE FOR: John RENDEL GARCIA
 from database.connection import get_connection
 
 
