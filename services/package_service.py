@@ -1,4 +1,4 @@
-# ROLE FOR: John RENDEL GARCIA
+# ROLE FOR: RENDEL GARCIA
 from utils.helpers import select_from_list, input_string
 from models.package_model import PackageModel
 
